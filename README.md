@@ -11,8 +11,14 @@ setup steps automatically on `worktree.created`.
 herdr plugin install tdi/herdr-worktree-from-pr
 ```
 
-Requires the `gh` CLI (authenticated) and `git`. `fzf` is used for the picker
-if present; otherwise a built-in numbered prompt is used.
+### Prerequisites
+
+- **`fzf`** — the fuzzy picker (`brew install fzf`). Required for the intended
+  overlay experience. Without it the plugin falls back to a plain numbered
+  prompt, but `fzf` is what you want.
+- **`gh`** — the GitHub CLI, authenticated (`gh auth login`).
+- **`git`**.
+- **Node.js** — to run the plugin (herdr invokes `node`).
 
 ## Use
 
