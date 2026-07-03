@@ -38,12 +38,16 @@ pick one and herdr creates + focuses the worktree.
 {
   "prLimit": 50,
   "forkBranchPrefix": "pr-",
+  "placement": "right",
   "fzfLayout": "down"
 }
 ```
 
 - `prLimit` — max PRs listed (default 50).
 - `forkBranchPrefix` — local branch prefix for fork PRs (default `pr-`).
+- `placement` — where the picker pane opens: `"right"` (default), `"left"`,
+  `"top"`, `"down"` (splits, so your work stays visible), or `"overlay"`
+  (full-screen). `left`/`top` open a right/down split then swap into place.
 - `fzfLayout` — `"down"` (default, search bar at the bottom) or `"top"` (search bar at the top). The picker renders as a compact window either way.
 
 ## Develop
