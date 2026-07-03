@@ -1,6 +1,12 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import { formatLine, formatLines, lineToPr } from '../lib/picker.js';
+import { formatLine, formatLines, lineToPr, fzfArgs } from '../lib/picker.js';
+
+test('fzfArgs adds --layout=reverse only for the top layout', () => {
+  assert.deepEqual(fzfArgs('top'), ['--layout=reverse', '--height=~40%', '--prompt', 'PR> ']);
+  assert.deepEqual(fzfArgs('down'), ['--height=~40%', '--prompt', 'PR> ']);
+  assert.deepEqual(fzfArgs(undefined), ['--height=~40%', '--prompt', 'PR> ']);
+});
 
 const PRS = [
   { number: 5, title: 'Fix thing', headRefName: 'fix/thing', authorLogin: 'alice', isCrossRepository: false },

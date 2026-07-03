@@ -37,9 +37,14 @@ pick one and herdr creates + focuses the worktree.
 ```json
 {
   "prLimit": 50,
-  "forkBranchPrefix": "pr-"
+  "forkBranchPrefix": "pr-",
+  "fzfLayout": "down"
 }
 ```
+
+- `prLimit` — max PRs listed (default 50).
+- `forkBranchPrefix` — local branch prefix for fork PRs (default `pr-`).
+- `fzfLayout` — `"down"` (default, search bar at the bottom) or `"top"` (search bar at the top). The picker renders as a compact window either way.
 
 ## Develop
 

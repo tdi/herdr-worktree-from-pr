@@ -1,4 +1,5 @@
 {
   "prLimit": 50,
-  "forkBranchPrefix": "pr-"
+  "forkBranchPrefix": "pr-",
+  "fzfLayout": "down"
 }
