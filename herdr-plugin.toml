@@ -1,0 +1,18 @@
+id = "tdi.worktree-from-pr"
+name = "Worktree from PR"
+version = "0.1.0"
+min_herdr_version = "0.7.0"
+description = "Create a git worktree from a GitHub PR and open it as a workspace"
+platforms = ["linux", "macos"]
+
+[[actions]]
+id = "pick"
+title = "Worktree from GitHub PR"
+contexts = ["workspace", "tab", "pane"]
+command = ["node", "bin/open.js"]
+
+[[panes]]
+id = "picker"
+title = "Pick a PR"
+placement = "overlay"
+command = ["node", "bin/picker.js"]
