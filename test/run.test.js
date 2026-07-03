@@ -10,6 +10,7 @@ function fakeExec(prsJson) {
     if (cmd === 'gh' && args.includes('repo')) return { status: 0, stdout: '{"nameWithOwner":"o/r"}', stderr: '' };
     if (cmd === 'gh' && args.includes('pr')) return { status: 0, stdout: prsJson, stderr: '' };
     if (cmd === 'git' && args.includes('list')) return { status: 0, stdout: 'worktree /repo\nbranch refs/heads/main\n', stderr: '' };
+    if (cmd === 'git' && args.includes('rev-parse')) return { status: 1, stdout: '', stderr: '' };
     if (cmd === 'git' && args.includes('fetch')) return { status: 0, stdout: '', stderr: '' };
     if (args[0] === 'worktree') return { status: 0, stdout: '{"type":"worktree_created"}', stderr: '' };
     return { status: 0, stdout: '', stderr: '' };
