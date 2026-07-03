@@ -9,6 +9,17 @@ test('parseContextCwd prefers focused_pane_cwd, then workspace_cwd, then fallbac
   assert.equal(parseContextCwd('not json', '/f'), '/f');
 });
 
+test('parseContextCwd reads nested herdr shapes and repo_root as fallbacks', () => {
+  assert.equal(parseContextCwd(JSON.stringify({ focused_pane: { cwd: '/p' } }), '/f'), '/p');
+  assert.equal(parseContextCwd(JSON.stringify({ workspace: { cwd: '/w' } }), '/f'), '/w');
+  assert.equal(parseContextCwd(JSON.stringify({ worktree: { checkout_path: '/wt' } }), '/f'), '/wt');
+  assert.equal(parseContextCwd(JSON.stringify({ repo_root: '/r' }), '/f'), '/r');
+  // flat keys win over nested/repo_root when both present
+  assert.equal(parseContextCwd(JSON.stringify({ focused_pane_cwd: '/a', worktree: { checkout_path: '/wt' }, repo_root: '/r' }), '/f'), '/a');
+  // empty strings are skipped
+  assert.equal(parseContextCwd(JSON.stringify({ focused_pane_cwd: '', workspace_cwd: '/b' }), '/f'), '/b');
+});
+
 test('resolveRepo returns the git toplevel when gh remote is present', () => {
   const env = { HERDR_PLUGIN_CONTEXT_JSON: JSON.stringify({ focused_pane_cwd: '/work/repo/sub' }) };
   const exec = (cmd, args) => {
