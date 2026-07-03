@@ -4,7 +4,7 @@ import { openPickerArgs } from '../lib/pane.js';
 
 test('openPickerArgs targets the picker overlay entrypoint', () => {
   assert.deepEqual(openPickerArgs('tdi.worktree-from-pr'), [
-    'plugin', 'pane', 'open', '--plugin', 'tdi.worktree-from-pr', '--entrypoint', 'picker', '--placement', 'overlay', '--focus',
+    'plugin', 'pane', 'open', '--plugin', 'tdi.worktree-from-pr', '--entrypoint', 'picker', '--placement', 'split', '--direction', 'right', '--focus',
   ]);
 });
 
