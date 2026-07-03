@@ -20,6 +20,21 @@ test('parseContextCwd reads nested herdr shapes and repo_root as fallbacks', () 
   assert.equal(parseContextCwd(JSON.stringify({ focused_pane_cwd: '', workspace_cwd: '/b' }), '/f'), '/b');
 });
 
+test('resolveRepo prefers HERDR_WFP_CWD over the pane context JSON', () => {
+  const env = {
+    HERDR_WFP_CWD: '/explicit/repo',
+    HERDR_PLUGIN_CONTEXT_JSON: JSON.stringify({ focused_pane_cwd: '/plugin/dir' }),
+  };
+  const seen = [];
+  const exec = (cmd, args) => {
+    if (cmd === 'git' && args.includes('--show-toplevel')) { seen.push(args.join(' ')); return { status: 0, stdout: '/explicit/repo\n', stderr: '' }; }
+    if (cmd === 'gh') return { status: 0, stdout: '{"nameWithOwner":"o/r"}', stderr: '' };
+    return { status: 1, stdout: '', stderr: '' };
+  };
+  assert.deepEqual(resolveRepo(env, exec), { repoRoot: '/explicit/repo' });
+  assert.ok(seen[0].includes('-C /explicit/repo'), 'git runs against HERDR_WFP_CWD, not the context dir');
+});
+
 test('resolveRepo returns the git toplevel when gh remote is present', () => {
   const env = { HERDR_PLUGIN_CONTEXT_JSON: JSON.stringify({ focused_pane_cwd: '/work/repo/sub' }) };
   const exec = (cmd, args) => {
