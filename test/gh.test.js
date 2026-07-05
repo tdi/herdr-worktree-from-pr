@@ -31,6 +31,13 @@ test('listPrs invokes gh with the right args and returns records', () => {
   assert.equal(calls[0].opts.cwd, '/repo');
 });
 
+test('listPrs passes useDirenv only when opted in', () => {
+  const calls = [];
+  const exec = (cmd, args, opts) => { calls.push({ cmd, args, opts }); return { status: 0, stdout: '[]', stderr: '' }; };
+  listPrs('/repo', 50, exec, { useDirenv: true });
+  assert.equal(calls[0].opts.useDirenv, true);
+});
+
 test('listPrs throws a clear error when gh fails', () => {
   const exec = () => ({ status: 1, stdout: '', stderr: 'gh: not authenticated' });
   assert.throws(() => listPrs('/repo', 50, exec), /gh pr list failed: gh: not authenticated/);
