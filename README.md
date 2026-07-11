@@ -39,7 +39,8 @@ pick one and herdr creates + focuses the worktree.
   "prLimit": 50,
   "forkBranchPrefix": "pr-",
   "placement": "right",
-  "fzfLayout": "down"
+  "fzfLayout": "down",
+  "useDirenv": false
 }
 ```
 
@@ -49,6 +50,7 @@ pick one and herdr creates + focuses the worktree.
   `"top"`, `"down"` (splits, so your work stays visible), or `"overlay"`
   (full-screen). `left`/`top` open a right/down split then swap into place.
 - `fzfLayout` — `"down"` (default, search bar at the bottom) or `"top"` (search bar at the top). The picker renders as a compact window either way.
+- `useDirenv` — opt in to running `gh` commands through `direnv exec <repo>` so repo `.envrc` can provide `GITHUB_TOKEN`/`GH_TOKEN` (default `false`, unchanged behavior).
 
 ## Develop
 
