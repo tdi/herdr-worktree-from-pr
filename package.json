@@ -1,6 +1,6 @@
 {
   "name": "herdr-worktree-from-pr",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Create a git worktree from a GitHub PR and open it as a herdr workspace",
   "type": "module",
   "private": true,
