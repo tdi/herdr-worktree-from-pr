@@ -13,9 +13,9 @@ const PRS = [
   { number: 9, title: 'Add feature #9', headRefName: 'feat', authorLogin: 'bob', isCrossRepository: true },
 ];
 
-test('formatLine starts with #number and marks forks', () => {
-  assert.match(formatLine(PRS[0]), /^#5\s+Fix thing\s+\(fix\/thing\) @alice$/);
-  assert.match(formatLine(PRS[1]), /^#9\s+Add feature #9\s+\(feat\) @bob \[fork\]$/);
+test('formatLine puts the author up front (after the number) and marks forks', () => {
+  assert.match(formatLine(PRS[0]), /^#5\s+@alice\s+Fix thing\s+\(fix\/thing\)$/);
+  assert.match(formatLine(PRS[1]), /^#9\s+@bob\s+Add feature #9\s+\(feat\) \[fork\]$/);
 });
 
 test('lineToPr maps a chosen line back to its PR by leading number', () => {
