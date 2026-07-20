@@ -2,5 +2,7 @@
   "prLimit": 50,
   "forkBranchPrefix": "pr-",
   "fzfLayout": "down",
-  "placement": "right"
+  "placement": "right",
+  "popupWidth": "80%",
+  "popupHeight": "70%"
 }
